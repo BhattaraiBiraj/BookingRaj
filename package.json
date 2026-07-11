@@ -1,0 +1,19 @@
+{
+  "name": "airbnb",
+  "version": "1.0.0",
+  "description": "This is the first major project which I will make - Airbnb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "airbnb"
+  ],
+  "author": "Biraj Bhattarai",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.7.4"
+  }
+}
