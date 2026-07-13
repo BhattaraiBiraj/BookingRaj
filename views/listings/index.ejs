@@ -13,8 +13,14 @@
             <a href="http://localhost:8080/listings/<%= listing.id %>">
         <%= listing.title %><br>
         </a>
+
         <hr>
         </div>
    <% } %>
+        <br><br>
+   <form action="/listings/add" method="get">
+    <button>Add New</button>
+   </form>
+
 </body>
 </html>

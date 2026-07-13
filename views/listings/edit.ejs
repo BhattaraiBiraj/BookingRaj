@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <form method="post" action="/listings/<%=listing.id%>?_method=PUT">
+         Title : <input name = "title" type = "text" value="<%=listing.title%>"><br>
+       Description : <input name = "description" type = "text" value="<%=listing.description%>"><br>
+       Image : <input name = "image" type = "text" value="<%=listing.image%>"><br>
+       Price : <input name = "price" type = "number" value="<%=listing.price%>"><br>
+       Location : <input name = "location" type = "text" value="<%=listing.location%>"><br>
+        Country : <input name = "country" type = "text" value="<%=listing.country%>"><br>
+        <button>Submit edit</button>
+    </form>
+</body>
+</html>

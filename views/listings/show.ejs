@@ -10,6 +10,13 @@
     <%= listing.title %><br>
     <%= listing.description %><br>
    ₹ <%= listing.price.toLocaleString("en-IN") %><br>
-    <%= listing.location %>
+    <%= listing.location %><br><br>
+
+    <form method="get" action="/listings/<%=listing.id%>/edit" >
+        <button>Edit</button>
+    </form>
+    <form action="/listings/<%= listing.id %>?_method=Delete" method="post">
+    <button>Delete</button>
+   </form>
 </body>
 </html>
