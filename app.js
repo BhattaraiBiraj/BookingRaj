@@ -1,10 +1,13 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const methodOverride = require("method-override"); 
 const Listing = require("./models/listing.js");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true })); 
+app.use(methodOverride("_method"));
 
 const mongoose = require("mongoose");
 
@@ -22,20 +25,22 @@ app.get("/", (req,res)=>{
     res.send("Hi i am root");
 })
 
+//index route
 app.get("/listings", async (req,res)=>{
     let allListings = await Listing.find({});
-    res.render("index.ejs",{allListings});
-})
+    res.render("listings/index.ejs",{allListings});
+});
 
 
 //post(add) new listings
 app.get("/listings/add", (req,res)=>{
-    res.render("addListing");
+    console.log("huhuhuhuhuhuhuhuhuhuhuhu")
+    res.render("listings/addListing.ejs");
 })
 
 app.post("/listings", async (req,res)=>{
-    let {title,description,image,price,location,country} = req.body;
-    let newLisitng = new Listing({
+    const {title,description,image,price,location,country} = req.body;
+    const  newLisitng = new Listing({
         title : title,
         description : description,
         image : image,
@@ -45,52 +50,39 @@ app.post("/listings", async (req,res)=>{
     });
 
     await newLisitng.save();
-    res.send("data saved");
+    res.redirect("/listings");
 })
 
+//show
+app.get("/listings/:id",async(req,res)=>{
+    let {id} = req.params;
+   const listing = await Listing.findById(id);
+   console.log(listing);
+    res.render("listings/show.ejs",{listing});
+})
 
 //update part
 app.get("/listings/:id/edit", async (req,res)=>{
-    let {id} = req.params;
+    const {id} = req.params;
     console.log(id)
-    let listing = await Listing.find({_id : id});
-    console.log(listing);
-    res.send("worked")
+    const listing = await Listing.findById(id);
+    res.render("listings/edit.ejs", {listing});
 });
 
-app.patch("/listings/:id", (req,res)=>{
+app.put("/listings/:id", async (req,res)=>{
     let {id} = req.params;
-    // Listing.findByIdAndUpdate("")
-
+    let {title, description, image, price, location,country} = req.body;
+    await Listing.findByIdAndUpdate(id, {title, description, image, price, location, country});
+    res.redirect("/listings");
 });
 
 
 //delete part
-app.delete("/listings/:id",(req,res)=>{
+app.delete("/listings/:id",async (req,res)=>{
     let {id} = req.params;
-    Listing.findByIdAndDelete(id);
-    res.redirect("/");
+    await Listing.findByIdAndDelete(id);
+    res.redirect("/listings");
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 app.listen(8080, ()=>{

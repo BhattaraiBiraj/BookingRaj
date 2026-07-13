@@ -7,5 +7,14 @@
 </head>
 <body>
     <h1>All listings</h1>
+    
+    <% for(listing of allListings) { %>
+        <div>
+            <a href="http://localhost:8080/listings/<%= listing.id %>">
+        <%= listing.title %><br>
+        </a>
+        <hr>
+        </div>
+   <% } %>
 </body>
 </html>

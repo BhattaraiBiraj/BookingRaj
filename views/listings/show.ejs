@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookingRaj</title>
+</head>
+<body>
+    <h1>This is your details</h1>
+    <%= listing.title %><br>
+    <%= listing.description %><br>
+   ₹ <%= listing.price.toLocaleString("en-IN") %><br>
+    <%= listing.location %>
+</body>
+</html>
