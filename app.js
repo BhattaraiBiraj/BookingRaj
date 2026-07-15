@@ -2,12 +2,15 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const methodOverride = require("method-override"); 
+const ejsMate = require("ejs-mate");
 const Listing = require("./models/listing.js");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true })); 
 app.use(methodOverride("_method"));
+app.engine("ejs", ejsMate);
+app.use(express.static(path.join(__dirname, "public")));
 
 const mongoose = require("mongoose");
 
@@ -33,7 +36,7 @@ app.get("/listings", async (req,res)=>{
 
 
 //post(add) new listings
-app.get("/listings/add", (req,res)=>{
+app.get("/listings/new", (req,res)=>{
     console.log("huhuhuhuhuhuhuhuhuhuhuhu")
     res.render("listings/addListing.ejs");
 })

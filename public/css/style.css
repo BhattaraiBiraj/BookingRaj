@@ -1,0 +1,118 @@
+body{
+ margin : 0 35px; 
+ display: flex;
+ flex-direction: column;
+ min-height: 100vh;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+ 
+  font-style: normal;
+}
+
+.container{
+    flex: 1;
+}
+
+.navbar{
+    height: 70px;
+    border-bottom: 1px solid black;
+    background-color: white;
+}
+
+.nav-link{
+    color: #222222 !important;
+}
+
+.fa-compass{
+    color:#fe424d;
+    font-size : 24px;
+}
+
+/* footer */
+
+.f-info{
+   background-color: rgb(134, 132, 132);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 120px;
+    text-align: center;
+}
+
+.f-info-socials{
+    font-size: 20px;
+    color: blue;
+}
+.fa-facebook, .fa-twitter, .fa-instagram{
+  margin: 0 12px;
+}
+
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+
+
+
+/* index */
+ .card{
+    margin-bottom: 12px;
+    
+    border : none;
+}
+
+.card-text{
+    text-decoration: none !important;
+}
+
+.card-img-top{
+    width: 100%;
+    height: 15rem;
+    border-radius: 10px;
+} 
+
+.listing-link{
+    text-decoration: none;
+}
+
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+/* add and edit btn */
+.add-btn, .edit-btn{
+    background-color: #fe424d;
+    color: white;
+}
+
+/* show */
+
+.show-img{
+    height: 40vh;
+}
+
+.btns{
+    display: flex;
+    justify-content: center;
+    margin : 10px;
+}
+
+.btns form{
+    margin-left: 20px;
+}
+
+.delete-btn{
+    color: white;
+    background-color: black;
+}
+

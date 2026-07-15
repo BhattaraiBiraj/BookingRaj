@@ -1,19 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<% layout("/layouts/boilerplate") %>
 <body>
-    <form method="post" action="/listings">
-       Title : <input name = "title" type = "text"><br>
-       Description : <input name = "description" type = "text"><br>
-       Image : <input name = "image" type = "text"><br>
-       Price : <input name = "price" type = "number"><br>
-       Location : <input name = "location" type = "text"><br>
-        Country : <input name = "country" type = "text"><br>
-        <button>Post</button>
+    <br><br>
+    <h1 style="text-align: center;">Create New Listing</h1>
+    <br><br>
+    <form method="post" action="/listings" class="row">
+        <div class="col-8 offset-2">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input name = "title" type = "text" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input name = "description" type = "text" class="form-control">
+        </div>
+        <div class="mb-3">
+             <label for="image" class="form-label">Image</label>
+            <input name = "image" type = "text" class="form-control">
+        </div>
+        <div class="row">
+             <div class="mb-3 col-md-4">
+                <label for="price" class="form-label">Price</label>
+                <input name = "price" type = "number" class="form-control">
+             </div>
+            <div class="mb-3 col-md-8">
+                <label for="location" class="form-label">Location</label>
+                <input name = "location" type = "text" class="form-control">
+            </div>
+        </div>
+        <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input name = "country" type = "text" class="form-control">
+        </div>
+         <br><br>
+        <div class="mb-3">
+             <button class="btn add-btn">Post</button>
+        </div>
+     </div>  
     </form>
 </body>
-</html>
