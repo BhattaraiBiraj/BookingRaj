@@ -1,50 +1,41 @@
-<!-- <% layout("/layouts/boilerplate") %>
-<body>
-    <form method="post" action="/listings/<%=listing.id%>?_method=PUT">
-         Title : <input name = "title" type = "text" value="<%=listing.title%>"><br>
-       Description : <input name = "description" type = "text" value="<%=listing.description%>"><br>
-       Image : <input name = "image" type = "text" value="<%=listing.image%>"><br>
-       Price : <input name = "price" type = "number" value="<%=listing.price%>"><br>
-       Location : <input name = "location" type = "text" value="<%=listing.location%>"><br>
-        Country : <input name = "country" type = "text" value="<%=listing.country%>"><br>
-        <button>Submit edit</button>
-    </form>
-</body> -->
-
-
-
 <% layout("/layouts/boilerplate") %>
 <body>
     <br><br>
     <h1 style="text-align: center;">Edit New Listing</h1>
     <br><br>
-    <form method="post" action="/listings/<%=listing.id%>?_method=PUT" class="row">
+    <form method="post" action="/listings/<%=listing.id%>?_method=PUT" class="row needs-validation" novalidate>
         <div class="col-8 offset-2">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input name = "title" type = "text" class="form-control" value="<%=listing.title%>">
+            <input name = "title" type = "text" class="form-control" value="<%=listing.title%>" required>
+            <div class="invalid-feedback">Write a good title!</div>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <input name = "description" type = "text" class="form-control" value="<%=listing.description%>">
+            <input name = "description" type = "text" class="form-control" value="<%=listing.description%>" required>
+              <div class="invalid-feedback">Write a short description!</div>
         </div>
         <div class="mb-3">
              <label for="image" class="form-label">Image</label>
-            <input name = "image" type = "text" class="form-control" value="<%=listing.image%>">
+            <input name = "image" type = "text" class="form-control" value="<%=listing.image%>" required>
+            <div class="invalid-feedback">Give image</div>
         </div>
         <div class="row">
              <div class="mb-3 col-md-4">
                 <label for="price" class="form-label">Price</label>
-                <input name = "price" type = "number" class="form-control" value="<%=listing.price%>">
+                <input name = "price" type = "number" class="form-control" value="<%=listing.price%>" required>
+                <div class="invalid-feedback">Enter a price!</div>
              </div>
             <div class="mb-3 col-md-8">
                 <label for="location" class="form-label">Location</label>
-                <input name = "location" type = "text" class="form-control" value="<%=listing.location%>">
+                <input name = "location" type = "text" class="form-control" value="<%=listing.location%>" required>
+                <div class="invalid-feedback">Enter a valid location!</div>
             </div>
         </div>
         <div class="mb-3">
                 <label for="country" class="form-label">Country</label>
-                <input name = "country" type = "text" class="form-control" value="<%=listing.country%>">
+                <input name = "country" type = "text" class="form-control" value="<%=listing.country%>" required>
+                <div class="invalid-feedback">Enter a country name!</div>
         </div>
          <br><br>
         <div class="mb-3">

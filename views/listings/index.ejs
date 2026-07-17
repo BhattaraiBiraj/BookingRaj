@@ -1,6 +1,6 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-    <h1>All listings</h1>
+    <h1 style="margin: 20px 0;">All listings</h1>
     <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
         <% for(listing of allListings) { %>
             <a href="http://localhost:8080/listings/<%= listing.id %>" class="listing-link"> 
@@ -12,6 +12,7 @@
                     <p class="card-text">
                         <b><%= listing.title %><br></b>
                         ₹ <%= listing.price.toLocaleString("en-IN") %> /Night<br>
+                        <%= listing.location %>
                     </p>
                     </div>
             </div>

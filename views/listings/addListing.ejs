@@ -3,33 +3,39 @@
     <br><br>
     <h1 style="text-align: center;">Create New Listing</h1>
     <br><br>
-    <form method="post" action="/listings" class="row">
+    <form method="post" action="/listings" novalidate class="row needs-validation">
         <div class="col-8 offset-2">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input name = "title" type = "text" class="form-control">
+            <input name = "title" type = "text" class="form-control" required>
+            <div class="valid-feedback">Looks Good!</div>
+             <div class="invalid-feedback">Write a good title!</div>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <input name = "description" type = "text" class="form-control">
+            <input name = "description" type = "text" class="form-control" required>
+            <div class="invalid-feedback">Write a short description!</div>
         </div>
         <div class="mb-3">
              <label for="image" class="form-label">Image</label>
-            <input name = "image" type = "text" class="form-control">
+            <input name = "image" type = "text" class="form-control" required>
         </div>
         <div class="row">
              <div class="mb-3 col-md-4">
                 <label for="price" class="form-label">Price</label>
-                <input name = "price" type = "number" class="form-control">
+                <input name = "price" type = "text" class="form-control" required>
+                <div class="invalid-feedback">Enter a price!</div>
              </div>
             <div class="mb-3 col-md-8">
                 <label for="location" class="form-label">Location</label>
-                <input name = "location" type = "text" class="form-control">
+                <input name = "location" type = "text" class="form-control" required>
+                <div class="invalid-feedback">Enter a valid location!</div>
             </div>
         </div>
         <div class="mb-3">
                 <label for="country" class="form-label">Country</label>
-                <input name = "country" type = "text" class="form-control">
+                <input name = "country" type = "text" class="form-control" required>
+                <div class="invalid-feedback">Enter a country name!</div>
         </div>
          <br><br>
         <div class="mb-3">
