@@ -18,9 +18,9 @@ const Schema = {
             "https:/encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCBacBAmsH6NoiO0-otYwzP7D8dV1-LnMiqZDWXkZvBw&s=10" 
             : v
         },
-  price : string,
-  location : string,
-  country : string,
+  price : Number,
+  location : String,
+  country : String,
 }
 
 const ListingSchema = new mongoose.Schema(Schema);
