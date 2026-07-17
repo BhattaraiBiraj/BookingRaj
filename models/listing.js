@@ -1,3 +1,4 @@
+const { string } = require("joi");
 const mongoose = require("mongoose");
 
 const Schema = {
@@ -17,18 +18,9 @@ const Schema = {
             "https:/encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCBacBAmsH6NoiO0-otYwzP7D8dV1-LnMiqZDWXkZvBw&s=10" 
             : v
         },
-    price : {
-        type : Number,
-        required : true
-    },
-    location : {
-        type : String,
-        required : true
-    },
-    country : {
-        type : String, 
-        required : true
-    }
+  price : string,
+  location : string,
+  country : string,
 }
 
 const ListingSchema = new mongoose.Schema(Schema);
