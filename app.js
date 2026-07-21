@@ -6,6 +6,7 @@ const ejsMate = require("ejs-mate");
 const Listing = require("./models/listing.js");
 const wrapAsync = require("./utils/WrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
+const listingSchema = require("./schema.js");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -44,9 +45,6 @@ app.get("/listings/new", (req,res)=>{
 })
 
 app.post("/listings",wrapAsync( async (req,res,next)=>{
-     if(!req.body){
-        throw (new ExpressError(400, "Send valid data for listing"));
-     }
         const {title,description,image,price,location,country} = req.body;
         const  newLisitng = new Listing({
         title : title,
@@ -55,7 +53,7 @@ app.post("/listings",wrapAsync( async (req,res,next)=>{
         price : price,
         location : location,
         country : country,
-    });
+        });
 
     await newLisitng.save();
     res.redirect("/listings");
@@ -100,8 +98,7 @@ app.all("/*splat", (req,res,next)=>{
 app.use((err,req,res,next)=>{
     console.log("euta aao")
     let {status = 500,message = "something went erong"} = err;
-    // res.status(status).send(message);
-    res.render("error.ejs",{message});
+    res.send(status).render("error.ejs",{message});
 })
 
 
