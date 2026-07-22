@@ -1,31 +1,56 @@
 <% layout("/layouts/boilerplate") %>
 <body>
     <div class="row">
-          <div class="col-8 offset-2">
-                <h1 style="margin: 20px 0;">Details</h1> 
+        <div class="col-8 offset-2">
+            <h1 style="margin: 20px 0;"><%= listing.title %></h1> 
 
-            <div class="card">
-            <img src="<%=listing.image%>" class="card-img-top show-img" alt="...">
-            <div class="card-body">
-                <p class="card-text">
-                    <b><%= listing.title %></b><br><br>
-                    <%= listing.description %><br><br>
-                     <b>₹ <%= listing.price.toLocaleString("en-IN") %>/ Night</b><br><br>
-                     <%= listing.location %>
-            </div>
-            </div>
-            <div class="btns">
-                        <form method="get" action="/listings/<%=listing.id%>/edit" >
-                            <button class="btn edit-btn show-edit-btn">Edit</button>
-                        </form>
-                        <form action="/listings/<%= listing.id %>?_method=Delete" method="post">
-                            <button class="btn delete-btn">Delete</button>
-                        </form>
-            </div>
-     
-
-    </div>
-    </div>
-
-   
+                <div class="card listing-card">
+                    <img src="<%=listing.image%>" class="card-img-top show-img" alt="...">
+                    <div class="card-body">
+                            <%= listing.description %><br><br>
+                            <b>₹ <%= listing.price.toLocaleString("en-IN") %>/ Night</b><br><br>
+                            <%= listing.location %>, <%= listing.country %>
+                    </div>
+                </div>
+                <div class="btns">
+                            <form method="get" action="/listings/<%=listing.id%>/edit" >
+                                <button class="btn edit-btn show-edit-btn">Edit</button>
+                            </form>
+                            <form action="/listings/<%= listing.id %>?_method=Delete" method="post">
+                                <button class="btn delete-btn">Delete</button>
+                            </form>
+                </div>
+                <hr>
+                <div class = "review">
+                    <h4>Leave a review</h4>
+                    <form action="/listings/<%= listing.id %>/reviews" method="post"class="needs-validation" novalidate>
+                        <div class = "mb-3 mt-3">
+                            <label for="rating" class="form-label">Rating</label>
+                            <input type="range" class = "form-range" min="1" max="5" name="rating">
+                        </div>
+                        <div class = "mb-3 mt-3">
+                            <label for="comment" class="form-label">Comment</label>
+                            <textarea name="comment" class= "form-control" cols = "30" rows = "5" required></textarea>
+                            <div class="invalid-feedback">Comment cannot be empty!</div>
+                        </div>
+                        <button class ="btn btn-outline-dark mb-3">Sumbit</button>
+                    </form>
+                </div>
+                 <hr>
+        </div>
+         <div class="col-8 offset-2">
+            <h3 class = "mb-4"> All Reviews</h3>
+                <div class="row">
+                        <% for(review of listing.reviews) { %>
+                    <div class="card col-5 mb-3 ms-5">
+                        <div class="card-body">
+                            <h5 class="card-title">Biraj Bhattarai</h5>
+                            <p class="card-text"><%= review.rating %> Star</p>
+                            <p class="card-text"><%= review.comment %></p>    
+                        </div>
+                    </div>
+                   <% } %> 
+                </div>
+                </div>
+    </div>  
 </body>

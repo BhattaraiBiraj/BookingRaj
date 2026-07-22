@@ -4,7 +4,7 @@
     <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
         <% for(listing of allListings) { %>
             <a href="http://localhost:8080/listings/<%= listing.id %>" class="listing-link"> 
-            <div class="card">
+            <div class="card listing-card">
                     <img src="<%=listing.image%>" class="card-img-top" alt="img of place">
                     <div class="card-img-overlay"></div>
                     
