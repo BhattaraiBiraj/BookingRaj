@@ -46,7 +46,10 @@
                         <div class="card-body">
                             <h5 class="card-title">Biraj Bhattarai</h5>
                             <p class="card-text"><%= review.rating %> Star</p>
-                            <p class="card-text"><%= review.comment %></p>    
+                            <p class="card-text"><%= review.comment %></p>
+                            <form action="/listings/<%=listing.id%>/reviews/<%=review.id%>?_method=Delete" method="post">
+                                <button class="btn btn-dark">Delete</button>
+                            </form>
                         </div>
                     </div>
                    <% } %> 
