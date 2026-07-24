@@ -41,18 +41,24 @@
          <div class="col-8 offset-2">
             <h3 class = "mb-4"> All Reviews</h3>
                 <div class="row">
+
+                    <% if(listing.reviews.length > 0){ %>
                         <% for(review of listing.reviews) { %>
-                    <div class="card col-5 mb-3 ms-5">
-                        <div class="card-body">
-                            <h5 class="card-title">Biraj Bhattarai</h5>
-                            <p class="card-text"><%= review.rating %> Star</p>
-                            <p class="card-text"><%= review.comment %></p>
-                            <form action="/listings/<%=listing.id%>/reviews/<%=review.id%>?_method=Delete" method="post">
-                                <button class="btn btn-dark">Delete</button>
-                            </form>
-                        </div>
-                    </div>
-                   <% } %> 
+                            <div class="card col-5 mb-3 ms-5">
+                                <div class="card-body">
+                                    <h5 class="card-title">Biraj Bhattarai</h5>
+                                    <p class="card-text"><%= review.rating %> Star</p>
+                                    <p class="card-text"><%= review.comment %></p>
+                                    <form action="/listings/<%=listing.id%>/reviews/<%=review.id%>?_method=Delete" method="post">
+                                        <button class="btn btn-dark">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        <% } %> 
+                   <% } else { %>
+                        <p style="color: rgb(37, 37, 37);" class="mb-5">There is no review yet</p>
+                   <% } %>
+                        
                 </div>
                 </div>
     </div>  
