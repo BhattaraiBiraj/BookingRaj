@@ -17,6 +17,15 @@ const validateListing = (req,res,next) =>{
     }
 }
 
+const isLoggedIn = (req,res,next) =>{
+ if(!req.isAuthenticated()){
+        req.flash("error", "you must logged in to add new listing")
+       res.redirect("/login");
+    }else{
+        next();
+    }
+}
+
 
 //index
 router.get("/", wrapAsync(async (req,res)=>{
@@ -26,11 +35,11 @@ router.get("/", wrapAsync(async (req,res)=>{
 
 
 //post(add) new listings
-router.get("/new", (req,res)=>{
+router.get("/new",isLoggedIn,(req,res)=>{
     res.render("listings/addListing.ejs");
 })
 
-router.post("/",validateListing,wrapAsync( async (req,res,next)=>{
+router.post("/",isLoggedIn,validateListing,wrapAsync( async (req,res,next)=>{
         const {title,description,image,price,location,country} = req.body;
         const  newLisitng = new Listing({
         title : title,
@@ -59,7 +68,7 @@ router.get("/:id",wrapAsync(async(req,res)=>{
 }));
 
 //update part
-router.get("/:id/edit", wrapAsync(async (req,res)=>{
+router.get("/:id/edit", isLoggedIn,wrapAsync(async (req,res)=>{
     const {id} = req.params;
     console.log(id)
     const listing = await Listing.findById(id);
@@ -76,7 +85,7 @@ router.put("/:id",validateListing,wrapAsync( async (req,res)=>{
  
 
 //delete part
-router.delete("/:id",wrapAsync(async (req,res)=>{
+router.delete("/:id",isLoggedIn,wrapAsync(async (req,res)=>{
     let {id} = req.params;
     await Listing.findByIdAndDelete(id);
     req.flash("success", "Listing Deleted !");

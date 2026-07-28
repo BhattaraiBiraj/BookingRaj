@@ -1,6 +1,7 @@
 const { required } = require("joi");
 const mongoose = require("mongoose");
-const passportLocalMongoose = require("passport-local-mongoose");
+const passportLocalMongoose = require("passport-local-mongoose").default 
+    ?? require("passport-local-mongoose");
 
 const schema = {
     email : {
