@@ -5,6 +5,7 @@ const Listing = require("../models/listing.js");
 const wrapAsync = require("../utils/WrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const {listingSchema, reviewSchema} = require("../schema.js");
+const {isLoggedIn} = require("../middleware.js");
 
 const validateListing = (req,res,next) =>{
     let {error} = listingSchema.validate(req.body);
@@ -16,16 +17,6 @@ const validateListing = (req,res,next) =>{
         next();
     }
 }
-
-const isLoggedIn = (req,res,next) =>{
- if(!req.isAuthenticated()){
-        req.flash("error", "you must logged in to add new listing")
-       res.redirect("/login");
-    }else{
-        next();
-    }
-}
-
 
 //index
 router.get("/", wrapAsync(async (req,res)=>{
@@ -48,8 +39,8 @@ router.post("/",isLoggedIn,validateListing,wrapAsync( async (req,res,next)=>{
         price : price,
         location : location, 
         country : country,
+        owner : req.user._id
         });
-
     await newLisitng.save();
     req.flash("success", "New Listing created Successfully");
     res.redirect("/listings");

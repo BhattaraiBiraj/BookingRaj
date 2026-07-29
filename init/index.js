@@ -17,6 +17,8 @@ async function main(){
 
 async function ListData(){
     await Listing.deleteMany({});
+    initialData.data = initialData.data.map((obj)=>({...obj, owner : '6a688eb7d2a5ff4ed3c69192'}));
+    console.log(initialData.data)
     await Listing.insertMany(initialData.data);
 }
 
