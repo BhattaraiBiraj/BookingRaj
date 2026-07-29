@@ -12,7 +12,8 @@
                             <%= listing.location %>, <%= listing.country %>
                     </div>
                 </div>
-                <div class="btns">
+                <% if(currentUser && currentUser._id.equals(listing.owner._id) ) { %>
+                    <div class="btns">
                             <form method="get" action="/listings/<%=listing.id%>/edit" >
                                 <button class="btn edit-btn show-edit-btn">Edit</button>
                             </form>
@@ -20,7 +21,11 @@
                                 <button class="btn delete-btn">Delete</button>
                             </form>
                 </div>
-                <hr>
+               <% } %>
+                
+                
+                <% if(currentUser) { %>
+                    <hr>
                 <div class = "review">
                     <h4>Leave a review</h4>
                     <form action="/listings/<%= listing.id %>/reviews" method="post"class="needs-validation" novalidate>
@@ -36,6 +41,7 @@
                         <button class ="btn btn-outline-dark mb-3">Sumbit</button>
                     </form>
                 </div>
+                <% } %>
                  <hr>
         </div>
          <div class="col-8 offset-2">
@@ -46,12 +52,14 @@
                         <% for(review of listing.reviews) { %>
                             <div class="card col-5 mb-3 ms-5">
                                 <div class="card-body">
-                                    <h5 class="card-title">Biraj Bhattarai</h5>
+                                    <h5 class="card-title"><%= review.author.username %></h5>
                                     <p class="card-text"><%= review.rating %> Star</p>
                                     <p class="card-text"><%= review.comment %></p>
+                                     <% if(currentUser && currentUser._id.equals(review.author._id) ) { %>
                                     <form action="/listings/<%=listing.id%>/reviews/<%=review.id%>?_method=Delete" method="post">
                                         <button class="btn btn-dark">Delete</button>
                                     </form>
+                                     <%}%>
                                 </div>
                             </div>
                         <% } %> 
