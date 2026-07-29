@@ -20,20 +20,22 @@ const validateListing = (req,res,next) =>{
     }
 }
 
-router.route("/")
-.get( wrapAsync(ListingController.index))
+router
+.route("/")
+.get(wrapAsync(ListingController.index))
 .post(isLoggedIn,validateListing,wrapAsync(ListingController.createListing))
 
 //post(add) new listings
 router.get("/new",isLoggedIn,ListingController.renderNewForm)
 
+router
+.route("/:id")
+.get(wrapAsync(ListingController.showListings))
+.put(isLoggedIn,isOwner,validateListing,wrapAsync(ListingController.updateListing))
+.delete(isLoggedIn,wrapAsync(ListingController.destroyListing));
+
+
 //update part
 router.get("/:id/edit", isLoggedIn,isOwner,wrapAsync(ListingController.renderEditForm));
-
-router.route("/:id")
-.get("/:id",wrapAsync(ListingController.showListings))
-.put("/:id",isLoggedIn,isOwner,validateListing,wrapAsync(ListingController.updateListing))
-.delete("/:id",isLoggedIn,wrapAsync(ListingController.destroyListing));
-
 
 module.exports = router;
