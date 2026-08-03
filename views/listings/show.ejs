@@ -29,10 +29,21 @@
                 <div class = "review">
                     <h4>Leave a review</h4>
                     <form action="/listings/<%= listing.id %>/reviews" method="post"class="needs-validation" novalidate>
-                        <div class = "mb-3 mt-3">
-                            <label for="rating" class="form-label">Rating</label>
-                            <input type="range" class = "form-range" min="1" max="5" name="rating">
-                        </div>
+                       
+                        <fieldset class="starability-fade">
+  <legend>First rating:</legend>
+  <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+  <input type="radio" id="first-rate1" name="rating" value="1" />
+  <label for="first-rate1" title="Terrible">1 star</label>
+  <input type="radio" id="first-rate2" name="rating" value="2" />
+  <label for="first-rate2" title="Not good">2 stars</label>
+  <input type="radio" id="first-rate3" name="rating" value="3" />
+  <label for="first-rate3" title="Average">3 stars</label>
+  <input type="radio" id="first-rate4" name="rating" value="4" />
+  <label for="first-rate4" title="Very good">4 stars</label>
+  <input type="radio" id="first-rate5" name="rating" value="5" />
+  <label for="first-rate5" title="Amazing">5 stars</label>
+</fieldset>
                         <div class = "mb-3 mt-3">
                             <label for="comment" class="form-label">Comment</label>
                             <textarea name="comment" class= "form-control" cols = "30" rows = "5" required></textarea>
@@ -54,6 +65,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><%= review.author.username %></h5>
                                     <p class="card-text"><%= review.rating %> Star</p>
+  <p class="starability-result" data-rating=<%= review.rating %>></p>
                                     <p class="card-text"><%= review.comment %></p>
                                      <% if(currentUser && currentUser._id.equals(review.author._id) ) { %>
                                     <form action="/listings/<%=listing.id%>/reviews/<%=review.id%>?_method=Delete" method="post">
