@@ -11,12 +11,8 @@ const Schema = {
         required : true
     },
     image : {
-        type : String,
-        default : "https:/encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCBacBAmsH6NoiO0-otYwzP7D8dV1-LnMiqZDWXkZvBw&s=10", 
-        set : (v) => 
-            v == ""?
-            "https:/encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCBacBAmsH6NoiO0-otYwzP7D8dV1-LnMiqZDWXkZvBw&s=10" 
-            : v
+        url : String,
+        filename : String
         },
   price : Number,
   location : String,

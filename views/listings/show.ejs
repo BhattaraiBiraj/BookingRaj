@@ -5,7 +5,7 @@
             <h1 style="margin: 20px 0;"><%= listing.title %></h1> 
 
                 <div class="card listing-card">
-                    <img src="<%=listing.image%>" class="card-img-top show-img" alt="...">
+                    <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="...">
                     <div class="card-body">
                             <%= listing.description %><br><br>
                             <b>₹ <%= listing.price.toLocaleString("en-IN") %>/ Night</b><br><br>

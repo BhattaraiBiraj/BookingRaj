@@ -11,11 +11,17 @@ module.exports.renderNewForm = (req,res)=>{
 }
 
 module.exports.createListing = async (req,res,next)=>{
-        const {title,description,image,price,location,country} = req.body;
-        const  newLisitng = new Listing({
+    const url = req.file.path;
+    const filename = req.file.filename;
+    console.log(url,filename)
+    const {title,description,price,location,country} = req.body;
+    const  newLisitng = new Listing({
         title : title,
         description : description,
-        image : image,
+        image : {
+            url,
+            filename
+        },
         price : price,
         location : location, 
         country : country,
@@ -44,15 +50,29 @@ module.exports.showListings = async(req,res)=>{
 
 module.exports.renderEditForm = async (req,res)=>{
     const {id} = req.params;
-    console.log(id)
     const listing = await Listing.findById(id);
-    res.render("listings/edit.ejs", {listing});
+   if(!listing){
+    req.flash("error", "This listing you try to get doesn't exist");
+    return res.redirect("/listings");
+   }
+   
+   let originalImageUrl = listing.image.url;
+   originalImageUrl = originalImageUrl.replace("/upload", "/upload/h_200,w_200");
+    res.render("listings/edit.ejs", {listing, originalImageUrl});
 }
 
 module.exports.updateListing =  async (req,res)=>{
+   
     let {id} = req.params;
-    let {title, description, image, price, location,country} = req.body;
-    await Listing.findByIdAndUpdate(id, {title, description, image, price, location, country});
+    let {title, description, price, location,country} = req.body;
+    const listing = await Listing.findByIdAndUpdate(id, {title, description, price, location, country});
+   
+   if(typeof req.file !== "undefined"){
+     const url = req.file.path;
+    const filename = req.file.filename;
+    listing.image = {url, filename};
+    await listing.save();
+   } 
     req.flash("success", "Successfully Updated !");
     res.redirect("/listings");
 }
