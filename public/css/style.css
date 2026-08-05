@@ -116,3 +116,10 @@ body{
     background-color: black;
 }
 
+
+/* MAP */
+
+#map { 
+    height : 400px;
+    width : 80vh;
+ }

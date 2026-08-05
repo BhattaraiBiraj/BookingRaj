@@ -1,4 +1,7 @@
 const Listing = require("../models/listing");
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapToken = process.env.MAP_TOKEN;
+const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 
 module.exports.index = async (req,res)=>{
@@ -11,6 +14,12 @@ module.exports.renderNewForm = (req,res)=>{
 }
 
 module.exports.createListing = async (req,res,next)=>{
+    let response = await geocodingClient.forwardGeocode({
+        query: req.body.location,
+        limit: 1
+    })
+  .send();
+
     const url = req.file.path;
     const filename = req.file.filename;
     console.log(url,filename)
@@ -25,9 +34,11 @@ module.exports.createListing = async (req,res,next)=>{
         price : price,
         location : location, 
         country : country,
-        owner : req.user._id
+        owner : req.user._id,
+        geometry : response.body.features[0].geometry
         });
-    await newLisitng.save();
+   let savedListing = await newLisitng.save();
+   console.log(savedListing)
     req.flash("success", "New Listing created Successfully");
     res.redirect("/listings");
 }
