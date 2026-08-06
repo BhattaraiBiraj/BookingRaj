@@ -1,23 +1,38 @@
+<style>
+  .airbnb_your_home-text{
+    margin-right: 30px;
+    border: 1px solid rgb(238, 118, 118);
+    border-radius: 22px; 
+    
+    opacity : 1;
+  }
+
+  .airbnb_your_home-text:hover{
+    opacity: 0.8;
+  }
+
+ </style>
+
 <nav class="navbar navbar-expand-md sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: space-between;">
       <div class="navbar-nav">
-        <a class="nav-link" aria-current="page" href="/">Home</a>
-        <a class="nav-link" href="/listings">All listings</a>
-        <a class="nav-link" href="/listings/new">New Listing</a>
+        <a class="nav-link" href="/listings">Explore</a>
       </div>
       <div class="navbar-nav">
+        <a class="nav-link airbnb_your_home-text" href="/listings/new">Airbnb your home</a>
         <% if(!currentUser){ %>
-         <a class="nav-link" href="/signup">Sign up</a>
-         <a class="nav-link" href="/login">Log in</a>
+         <a class="nav-link" href="/signup"><b>Sign up</b></a>
+         <a class="nav-link" href="/login"><b>Log in</b></a>
          <% }%>
         <% if(currentUser){ %>
+          <i class="fa-regular fa-user navbar-brand" style="margin-right: 0;"></i>
             <div class="nav-link"><%-currentUser.username%></div>
-          <a class="nav-link" href="/logout">Log out</a>
+          <a class="nav-link" href="/logout"><b>Log out</b></a>
         <% } %> 
       </div>
     </div>
