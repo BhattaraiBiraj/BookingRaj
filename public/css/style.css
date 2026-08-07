@@ -69,10 +69,13 @@ body{
 .card-text{
     text-decoration: none !important;
 }
-
-.card-img-top{
+/* .imgInsideshow{
+    object-fit: cover;
+} */
+.card-img-listing{
     width: 100%;
     height: 15rem;
+    object-fit: cover;
     border-radius: 10px;
 } 
 
@@ -98,8 +101,12 @@ body{
 /* show */
 
 .show-img{
-    height: 40vh;
+    width: 100%;
+    height: 25rem;
+    object-fit: cover;
+    border-radius: 10px;
 }
+
 
 .btns{
     display: flex;

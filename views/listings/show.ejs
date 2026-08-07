@@ -9,7 +9,7 @@
             <h1 style="margin: 20px 0;"><%= listing.title %></h1> 
 
                 <div class="card listing-card">
-                    <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="...">
+                   <img src="<%=listing.image.url%>" class="show-img" alt="image of the place">
                     <div class="card-body">
                             <%= listing.description %><br><br>
                             <b>₹ <%= listing.price.toLocaleString("en-IN") %>/ Night</b><br><br>
@@ -65,7 +65,7 @@
 
                     <% if(listing.reviews.length > 0){ %>
                         <% for(review of listing.reviews) { %>
-                            <div class="card col-5 mb-3 ms-5">
+                            <div class="card col-md-6 mb-3" style="width: 45%; margin-right: 37px;">
                                 <div class="card-body">
                                     <h5 class="card-title"><%= review.author.username %></h5>
                                     <p class="card-text"><%= review.rating %> Star</p>
@@ -84,6 +84,7 @@
                    <% } %>
                         
                 </div>
+                <hr>
                 </div>
                 <div class="col-8 offset-2">
                     <h3>Where you'll be</h3>

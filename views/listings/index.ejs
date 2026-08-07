@@ -98,9 +98,7 @@
         <% for(listing of allListings) { %>
             <a href="/listings/<%= listing.id %>" class="listing-link"> 
             <div class="card listing-card">
-                    <img src="<%=listing.image.url%>" class="card-img-top" alt="img of place">
-                    <div class="card-img-overlay"></div>
-                    
+                    <img src="<%=listing.image.url%>" class="card-img-listing" alt="img of place">
                     <div class="card-body">
                     <p class="card-text">
                         <b><%= listing.title %><br></b>
