@@ -11,6 +11,30 @@
     opacity: 0.8;
   }
 
+  .search-input{
+    border-radius: 20px;
+    width: 350px;
+  }
+  .search-btn{
+    margin-left: 10px;
+    background-color:#fe424d;
+    color: white;
+    border : none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    border-radius: 20px;
+  }
+
+  .search-btn:hover{
+    background-color: #fe424d;
+    color: white;
+  }
+
+  .search-btn .fa-magnifying-glass {
+    margin-right: 6px;
+  }
  </style>
 
 <nav class="navbar navbar-expand-md sticky-top">
@@ -22,6 +46,13 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: space-between;">
       <div class="navbar-nav">
         <a class="nav-link" href="/listings">Explore</a>
+      </div>
+      <div>
+        <form class="d-flex" role="search" action="/search" method="get">
+      <input  name="q" class="form-control me-2 search-input" type="search" placeholder="Search Destinations"aria-label="Search"
+      value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"/>
+      <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+    </form>
       </div>
       <div class="navbar-nav">
         <a class="nav-link airbnb_your_home-text" href="/listings/new">Airbnb your home</a>
