@@ -8,6 +8,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
+const {MongoStore} = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -18,13 +19,13 @@ const reviewRouter = require("./routes/review.js");
 const userRouter= require("./routes/user.js");
 const searchRouter = require("./routes/search.js");
 
-const MONGO_URL = 'mongodb://127.0.0.1:27017/BookingRaj';
+const dbUrl = process.env.ATLASDB_URL;
 main() 
 .then(() => {console.log("Connected to Database")})
 .catch((err) => {console.log(err)});
 
 async function main(){
-    mongoose.connect(MONGO_URL);
+    mongoose.connect(dbUrl);
 }
 
 
@@ -36,8 +37,20 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 
+const store = MongoStore.create({
+    mongoUrl : dbUrl,
+    crypto : {
+         secret : process.env.SECRET, 
+    },
+    touchafter : 24* 3600,    //seconds
+});
+
+store.on("error", ()=>{
+    console.log("error on the mongo session store", err);
+})
 app.use(session({
-    secret : "mysecretcode", 
+    store : store,
+    secret : process.env.SECRET, 
     resave : false,
     saveUninitialized : true,
     cookie : {

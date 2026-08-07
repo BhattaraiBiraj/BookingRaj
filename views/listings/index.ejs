@@ -92,7 +92,7 @@
     
         <% if (allListings.length === 0) { %>
             <h1 style="margin-top: 30px;">OOPS !</h1>
-            <p style="margin-top: 30px; color: #fe424d;">No listings found for "<%= searchQuery %>". Try another city!</p>
+            <p style="margin-top: 30px; color: #fe424d;">No listings found<% if (typeof searchQuery !== 'undefined' && searchQuery) { %> for "<%= searchQuery %>"<% } %>. Try another city!</p>
         <% } %>
          <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2">   
         <% for(listing of allListings) { %>
